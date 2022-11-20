@@ -12,7 +12,7 @@ import {
   FormLabel,
   FormControl,
 } from "@chakra-ui/react";
-
+ 
 function AddPostForm() {
   const { handleSubmit } = usePost();
 
@@ -34,7 +34,7 @@ function AddPostForm() {
       Add your post!
       </Heading>
 
-      <Form onSubmit={()=>handleSubmit()} >
+      <Form onSubmit={handleSubmit} >
         <FormControl pb="2em" borderColor="green.500" isRequired>
           <FormLabel fontSize={'20'} textAlign='center' requiredIndicator>Post Title</FormLabel>
           <Input type="text" borderWidth={2} placeholder="Enter the title" id="title" />

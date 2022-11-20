@@ -27,18 +27,18 @@ function Post() {
  
    const userName = actionType.user.username ;
    useEffect(() => {
-    getAllPosts();
+    // getAllPosts();
   });
 
   return (
     <Flex direction="column" justify="center" alignItems="center">
 
-      <Heading mb="1em">Chat with us! {userName}</Heading>
+      <Heading mb="1em" textStyle='h1' >Chat with us! {userName}</Heading>
  
 
       <AddPostForm />
 
-      <Wrap spacing={6} justify="center"
+      <Wrap spacing={12} justify="center"
       backgroundColor={'yellow.300'}
       >
 {/* {console.log({posts})} */}
@@ -47,16 +47,15 @@ function Post() {
             return (
               <SimpleGrid key={idx} minChildWidth='600px'>
                 <Box borderWidth="1px" borderRadius="lg" overflow="hidden"  boxShadow="md">
-                  <Box p="6">
+                  <Box p="4">
                     <Box display="flex" alignItems="baseline">
-                      <Badge borderRadius="full" px="2" colorScheme="teal">New</Badge>
+                      <Badge borderRadius="full" px="1" colorScheme="teal">Lough!</Badge>
                       <Box
                         fontWeight="bold"
                         color="gray.500"
                         letterSpacing="wide"
                         fontSize="lg"
-                        // textTransform="uppercase"
-                        ml="2"
+                         ml="2"
                         >
                         {value.creator.charAt(0).toUpperCase() + value.creator.slice(1)}
                       </Box>
@@ -74,7 +73,7 @@ function Post() {
                        {actionType.user.role === "admin" || actionType.user.userId === value.userID ? (
                         <HStack justify="center" divider={<StackDivider borderColor="gray.200" />}>
                           <EditModal post={value} getAllPosts={getAllPosts} />
-                          <Button leftIcon={<FaTrash />} colorScheme="red" type="submit" onClick={() => handlePostDelete(value.id)}>Delete Post</Button>
+                          <Button leftIcon={<FaTrash />} colorScheme="red" type="submit" variant='primary' onClick={() => handlePostDelete(value.id)}>Delete Post</Button>
                         </HStack>
                       ) : null}
                     </Box>
@@ -99,7 +98,9 @@ function Post() {
                         {value.Comments && value.Comments.map((item, idx) => {
                           return (
                               <HStack spacing={4} key={idx}>
-                                <Text fontWeight="semibold" >{item.creator.charAt(0).toUpperCase() + item.creator.slice(1)}</Text>
+                                <Text fontWeight="semibold" >
+                                  {item.creator.charAt(0).toUpperCase() + item.creator.slice(1)}
+                                  </Text>
                                 <Text>{item.comment}</Text>
                                 <Spacer/>
                                 {actionType.user.role === "admin" || actionType.user.userId === item.userID ? (
