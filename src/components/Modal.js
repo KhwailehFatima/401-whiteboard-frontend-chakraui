@@ -1,7 +1,7 @@
 import React from "react";
 import { Form } from "react-bootstrap";
 import axios from "axios";
-import { useAuth } from '../Context/authContext';
+// import { useAuth } from '../Context/authContext';
 
 import { FaEdit } from "react-icons/fa";
 import {
@@ -21,12 +21,12 @@ import {
   Textarea,
   useToast,
 } from '@chakra-ui/react'
-
+import {actionType} from '../config/constant'
 
 function EditModal(props) {
+  const token = localStorage.getItem('token');
 
-    const { userData } = useAuth();
-
+ 
     const { isOpen, onOpen, onClose } = useDisclosure()
     const toast = useToast();
 
@@ -35,20 +35,20 @@ function EditModal(props) {
         const updatedPost = {
           postTitle: e.target.editTitle.value,
           postContent: e.target.editContent.value,
-          userID: userData.user.userId,
-          creator: userData.user.username
+          userID: actionType.user.userId,
+          creator: actionType.user.username
         };
 
-        await axios.put(`${process.env.REACT_APP_HEROKU_URL}/post/${id}`, updatedPost, {
+        await axios.put(`${process.env.REACT_APP_HEROKU_URI}/post/${id}`, updatedPost, {
             headers: {
-              Authorization: `Bearer ${userData.user.token}`,
+              Authorization: `Bearer ${ token}`,
             },
           }
         );
         props.getAllPosts();
         onClose();
         toast({
-          title: 'Post has been Edited successfully!',
+          title: 'Post is Edited successfully!',
           status: 'success',
           duration: 3000,
           isClosable: true,
@@ -57,7 +57,7 @@ function EditModal(props) {
     
         return (
             <VStack>
-                <Button leftIcon={<FaEdit />} colorScheme="blue" onClick={onOpen}>Edit Post</Button> 
+                <Button leftIcon={<FaEdit />} colorScheme="green" onClick={onOpen}>Edit Post</Button> 
 
                 <Modal isOpen={isOpen} onClose={onClose}>
                   <ModalOverlay />
@@ -79,7 +79,7 @@ function EditModal(props) {
                           </FormControl>
 
                           <ModalFooter>
-                            <Button colorScheme='blue' type="submit">Save Changes</Button>
+                            <Button colorScheme='green' type="submit">Save Changes</Button>
                             <Button variant='ghost' mr={3} onClick={onClose}>Close</Button>
                           </ModalFooter>
 
