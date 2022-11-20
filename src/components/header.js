@@ -7,7 +7,7 @@ import { useAuth } from "../Context/authContext";
 export default function Header() {
   const { handleLogout } = useAuth();
 
-  const { toggleColorMode, colorMode, colorScheme } = useColorMode();
+  const { toggleColorMode, colorMode  } = useColorMode();
 
   const userInfo = localStorage.getItem('currentUser')
   return (
