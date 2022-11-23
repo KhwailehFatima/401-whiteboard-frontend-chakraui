@@ -8,21 +8,24 @@ import AuthContextProvider from "./Context/authContext";
 import PostContextProvider from "./Context/postContext";
 import { ChakraProvider, ColorModeScript } from "@chakra-ui/react";
 import theme from './theme';
-
+// import { Provider } from "react-redux";
+// import { store } from './redux/store';
 
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
   // <React.StrictMode>
-    <ChakraProvider>
-      <ColorModeScript initialColorMode={theme.config.initialColorMode}  />
-        <AuthContextProvider>
-          <PostContextProvider>
-            <App />
-          </PostContextProvider>
-        </AuthContextProvider>
-    </ChakraProvider>
+  <ChakraProvider>
+    <ColorModeScript initialColorMode={theme.config.initialColorMode} />
+    <AuthContextProvider>
+      <PostContextProvider>
+        {/* <Provider store={store} > */}
+          <App />
+        {/* </Provider> */}
+      </PostContextProvider>
+    </AuthContextProvider>
+  </ChakraProvider>
   // </React.StrictMode>
 );
 

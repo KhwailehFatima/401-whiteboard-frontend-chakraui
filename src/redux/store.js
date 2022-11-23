@@ -4,7 +4,7 @@ import signupSlicer from './signupSlicer';
 import signinSlicer from './signinSlicer';
 import logoutSlicer from "./logoutSlicer";
 
-export default configureStore({
+export const store= configureStore({
     reducer:{
         signup:signupSlicer,
         signin:signinSlicer,
